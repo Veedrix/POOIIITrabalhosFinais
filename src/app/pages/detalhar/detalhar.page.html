@@ -10,47 +10,69 @@
   </ion-text>
   <ion-list>
     <ion-item>
-
       <ion-label>Habilitar Edição</ion-label>
       <ion-toggle color="success" (ionChange)="liberarEdicao()"></ion-toggle>
     </ion-item>
     <form [formGroup]="form_cadastrar" (ngSubmit)="submitForm()">
-
       <ion-item>
-        <ion-input placeholder="Nome" formControlName="nome"></ion-input>
+        <ion-input
+          placeholder="Nome"
+          formControlName="nome"
+          disabled="{{openEdit}}"
+        ></ion-input>
       </ion-item>
-      <ion-item *ngIf="
-      (((errorControl.nome.touched) || (errorControl.nome.dirty)) && errorControl.nome.errors)">
+      <ion-item
+        *ngIf="
+      (((errorControl.nome.touched) || (errorControl.nome.dirty)) && errorControl.nome.errors)"
+      >
         <span *ngIf="errorControl.nome.errors?.required">
           Nome é obrigatório
         </span>
       </ion-item>
 
       <ion-item>
-        <ion-input placeholder="Autor" formControlName="autor"></ion-input>
+        <ion-input
+          placeholder="Autor"
+          formControlName="autor"
+          disabled="{{openEdit}}"
+        ></ion-input>
       </ion-item>
-      <ion-item *ngIf="
-      (((errorControl.autor.touched) || (errorControl.autor.dirty)) && errorControl.autor.errors)">
+      <ion-item
+        *ngIf="
+      (((errorControl.autor.touched) || (errorControl.autor.dirty)) && errorControl.autor.errors)"
+      >
         <span *ngIf="errorControl.autor.errors?.required">
           autor é obrigatório
         </span>
       </ion-item>
 
       <ion-item>
-        <ion-input placeholder="Edicao" formControlName="edicao"></ion-input>
+        <ion-input
+          placeholder="Edicao"
+          formControlName="edicao"
+          disabled="{{openEdit}}"
+        ></ion-input>
       </ion-item>
-      <ion-item *ngIf="
-      (((errorControl.edicao.touched) || (errorControl.edicao.dirty)) && errorControl.edicao.errors)">
+      <ion-item
+        *ngIf="
+      (((errorControl.edicao.touched) || (errorControl.edicao.dirty)) && errorControl.edicao.errors)"
+      >
         <span *ngIf="errorControl.edicao.errors?.required">
           edicao é obrigatório
         </span>
       </ion-item>
 
       <ion-item>
-        <ion-input placeholder="paginas" formControlName="paginas"></ion-input>
+        <ion-input
+          placeholder="paginas"
+          formControlName="paginas"
+          disabled="{{openEdit}}"
+        ></ion-input>
       </ion-item>
-      <ion-item *ngIf="
-      (((errorControl.paginas.touched) || (errorControl.paginas.dirty)) && errorControl.paginas.errors)">
+      <ion-item
+        *ngIf="
+      (((errorControl.paginas.touched) || (errorControl.paginas.dirty)) && errorControl.paginas.errors)"
+      >
         <span *ngIf="errorControl.paginas.errors?.required">
           paginas é obrigatório
         </span>
@@ -59,8 +81,14 @@
       <ion-item>
         <ion-list>
           <ion-item>
-            <ion-select placeholder="Selecione o Genero" formControlName="genero">
-              <ion-select-option value="ficcao">Ficção Cientifica</ion-select-option>
+            <ion-select
+              placeholder="Selecione o Genero"
+              formControlName="genero"
+              disabled="{{openEdit}}"
+            >
+              <ion-select-option value="ficcao"
+                >Ficção Cientifica</ion-select-option
+              >
               <ion-select-option value="romance">Romance</ion-select-option>
               <ion-select-option value="acao">Ação</ion-select-option>
               <ion-select-option value="magia">magia</ion-select-option>
@@ -71,8 +99,10 @@
           </ion-item>
         </ion-list>
       </ion-item>
-      <ion-item *ngIf="
-      (((errorControl.genero.touched) || (errorControl.genero.dirty)) && errorControl.genero.errors)">
+      <ion-item
+        *ngIf="
+      (((errorControl.genero.touched) || (errorControl.genero.dirty)) && errorControl.genero.errors)"
+      >
         <span *ngIf="errorControl.genero.errors?.required">
           Genero é obrigatório
         </span>
@@ -81,8 +111,14 @@
       <ion-item>
         <ion-list>
           <ion-item>
-            <ion-select placeholder="Selecione o Sub Genero" formControlName="subGenero">
-              <ion-select-option value="ficcao">Ficção Cientifica</ion-select-option>
+            <ion-select
+              placeholder="Selecione o Sub genero"
+              formControlName="subgenero"
+              disabled="{{openEdit}}"
+            >
+              <ion-select-option value="ficcao"
+                >Ficção Cientifica</ion-select-option
+              >
               <ion-select-option value="romance">Romance</ion-select-option>
               <ion-select-option value="acao">Ação</ion-select-option>
               <ion-select-option value="magia">Magia</ion-select-option>
@@ -95,10 +131,16 @@
       </ion-item>
 
       <ion-item>
-        <ion-input placeholder="Editora" formControlName="editora"></ion-input>
+        <ion-input
+          placeholder="Editora"
+          formControlName="editora"
+          disabled="{{openEdit}}"
+        ></ion-input>
       </ion-item>
-      <ion-item *ngIf="
-      (((errorControl.editora.touched) || (errorControl.editora.dirty)) && errorControl.editora.errors)">
+      <ion-item
+        *ngIf="
+      (((errorControl.editora.touched) || (errorControl.editora.dirty)) && errorControl.editora.errors)"
+      >
         <span *ngIf="errorControl.edicao.errors?.required">
           Editora é obrigatório
         </span>
@@ -107,7 +149,11 @@
       <ion-item>
         <ion-list>
           <ion-item>
-            <ion-select placeholder="Selecione o tipo de Ecadernação" formControlName="encadernacao">
+            <ion-select
+              placeholder="Selecione o tipo de Ecadernação"
+              formControlName="encadernacao"
+              disabled="{{openEdit}}"
+            >
               <ion-select-option value="capaDura">Capa Dura</ion-select-option>
               <ion-select-option value="capaMole">Capa Mole</ion-select-option>
               <ion-select-option value="semCapa">Sem Capa</ion-select-option>
@@ -117,7 +163,8 @@
       </ion-item>
       <ion-item
         *ngIf="
-      (((errorControl.encadernacao.touched) || (errorControl.encadernacao.dirty)) && errorControl.encadernacao.errors)">
+      (((errorControl.encadernacao.touched) || (errorControl.encadernacao.dirty)) && errorControl.encadernacao.errors)"
+      >
         <span *ngIf="errorControl.encadernacao.errors?.required">
           Encadernação é obrigatório
         </span>
@@ -125,19 +172,46 @@
 
       <ion-item>
         <ion-text> Data de Lancamento: </ion-text>
-        <ion-datetime-button datetime="datetime" color="tertiary"></ion-datetime-button>
+        <ion-datetime-button
+          datetime="datetime"
+          color="tertiary"
+        ></ion-datetime-button>
         <ion-modal [keepContentsMounted]="true">
           <ng-template>
-            <ion-datetime id="datetime" max="{{data}}" presentation="date" formControlName="data_lancamento">
+            <ion-datetime
+              id="datetime"
+              max="{{data}}"
+              presentation="date"
+              formControlName="data_lancamento"
+              disabled="{{openEdit}}"
+            >
             </ion-datetime>
           </ng-template>
         </ion-modal>
       </ion-item>
-      <ion-button disabled="{{openEdit}}" expand="block" shape="round" color="tertiary" (click)="editar()" color="tertiary">
-        Editar</ion-button>
-      <ion-button disabled="{{openEdit}}" expand="block" shape="round" color="tertiary" (click)="excluir()" color="danger">
-        Excluir</ion-button>
+
+      <ion-button
+        disabled="{{{{openEdit}}}}"
+        expand="block"
+        shape="round"
+        color="tertiary"
+        (click)="editar()"
+        color="tertiary"
+        disabled="{{openEdit}}"
+      >
+        Editar</ion-button
+      >
+      <ion-button
+        disabled="{{{{openEdit}}}}"
+        expand="block"
+        shape="round"
+        color="tertiary"
+        (click)="excluir()"
+        color="danger"
+        disabled="{{openEdit}}"
+      >
+        Excluir</ion-button
+      >
     </form>
   </ion-list>
-
 </ion-content>

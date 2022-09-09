@@ -22,7 +22,7 @@ export class DetalharPage implements OnInit {
     private router: Router,
     private livroService: LivroServices,
     private formBuider: FormBuilder
-  ) { }
+  ) {}
 
   iniciarForm() {
     this.form_cadastrar = this.formBuider.group({
@@ -45,7 +45,11 @@ export class DetalharPage implements OnInit {
   submitForm(): boolean {
     this.isSubmitted = true;
     if (!this.form_cadastrar.valid) {
-      this.presentAlert('Livraria', 'Error', 'Todos os campos são Obrigatórios!');
+      this.presentAlert(
+        'Livraria',
+        'Error',
+        'Todos os campos são Obrigatórios!'
+      );
       return false;
     } else {
       this.editar();
@@ -60,7 +64,11 @@ export class DetalharPage implements OnInit {
   }
   editar() {
     if (!this.form_cadastrar.valid) {
-      this.presentAlert('Livraria', 'Error', 'Todos os campos são Obrigatórios!');
+      this.presentAlert(
+        'Livraria',
+        'Error',
+        'Todos os campos são Obrigatórios!'
+      );
     } else {
       if (
         this.livroService.editar(
@@ -73,7 +81,7 @@ export class DetalharPage implements OnInit {
           this.form_cadastrar.value.genero,
           this.form_cadastrar.value.subGenero,
           this.form_cadastrar.value.editora,
-          this.form_cadastrar.value.encadernacao,
+          this.form_cadastrar.value.encadernacao
         )
       ) {
         this.router.navigate(['/home']);
@@ -94,7 +102,11 @@ export class DetalharPage implements OnInit {
 
   private excluirlivro() {
     if (this.livroService.excluir(this.livro)) {
-      this.presentAlert('Livraria', 'Excluir', 'Exclusão realizada com Sucesso!');
+      this.presentAlert(
+        'Livraria',
+        'Excluir',
+        'Exclusão realizada com Sucesso!'
+      );
       this.router.navigate(['/home']);
     } else {
       this.presentAlert('Livraria', 'Excluir', 'livro não encontrado!');
@@ -133,7 +145,7 @@ export class DetalharPage implements OnInit {
         {
           text: 'Cancel',
           role: 'cancel',
-          handler: () => { },
+          handler: () => {},
         },
         {
           text: 'OK',
