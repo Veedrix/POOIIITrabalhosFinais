@@ -1,10 +1,10 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar >
     <ion-title>Livraria</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-text-center flex ion-align-self-center">
   <ion-text color="tertiary">
     <h1>Detalhar Livro</h1>
   </ion-text>
@@ -80,11 +80,10 @@
 
       <ion-item>
         <ion-list>
-          <ion-item>
+          <ion-item disabled="{{openEdit}}">
             <ion-select
               placeholder="Selecione o Genero"
               formControlName="genero"
-              disabled="{{openEdit}}"
             >
               <ion-select-option value="ficcao"
                 >Ficção Cientifica</ion-select-option
@@ -110,11 +109,10 @@
 
       <ion-item>
         <ion-list>
-          <ion-item>
+          <ion-item disabled="{{openEdit}}">
             <ion-select
               placeholder="Selecione o Sub genero"
               formControlName="subGenero"
-              disabled="{{openEdit}}"
             >
               <ion-select-option value="ficcao"
                 >Ficção Cientifica</ion-select-option
@@ -148,11 +146,10 @@
 
       <ion-item>
         <ion-list>
-          <ion-item>
+          <ion-item disabled="{{openEdit}}">
             <ion-select
               placeholder="Selecione o tipo de Ecadernação"
               formControlName="encadernacao"
-              disabled="{{openEdit}}"
             >
               <ion-select-option value="capaDura">Capa Dura</ion-select-option>
               <ion-select-option value="capaMole">Capa Mole</ion-select-option>
@@ -197,7 +194,6 @@
         color="tertiary"
         (click)="editar()"
         color="tertiary"
-        
       >
         Editar</ion-button
       >
@@ -208,7 +204,6 @@
         color="tertiary"
         (click)="excluir()"
         color="danger"
-        
       >
         Excluir</ion-button
       >
