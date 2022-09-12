@@ -1,19 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title color="tertiary"> Lista de Livros </ion-title>
+    <ion-title>Livraria</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-text-center flex ion-align-self-center">
+  <ion-text color="tertiary">
+    <h2>Lista de Livros</h2>
+  </ion-text>
   <ion-list>
     <ion-item-sliding *ngFor="let livro of livros">
-      <ion-item>
+      <ion-item class="nomeLivro">
         <ion-text>
           <h3>{{livro.nome}}</h3>
         </ion-text>
       </ion-item>
       <ion-item-options side="end">
-        <ion-item-option (click)="irParaDetalhar(livro)">
+        <ion-item-option (click)="irParaDetalhar(livro)" color="tertiary">
           <ion-icon name="create-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>

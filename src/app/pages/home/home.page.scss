@@ -25,3 +25,14 @@
 #container a {
   text-decoration: none;
 }
+
+.tituloHome{
+  text-align: center;
+  font-size: 20px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: rgb(82, 5, 170);
+}
+
+.bottunExcluir{
+  --ion-color-danger: red
+}
