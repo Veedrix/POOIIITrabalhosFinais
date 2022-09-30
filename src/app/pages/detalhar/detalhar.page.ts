@@ -28,24 +28,21 @@ export class DetalharPage implements OnInit {
 
   iniciarForm() {
     this.form_cadastrar = this.formBuider.group({
-      nome: ['', [Validators.required]],
-      autor: ['', [Validators.required]],
+      nome: [this.livro.nome, [Validators.required]],
+      autor: [this.livro.autor, [Validators.required]],
       edicao: [
-        '',
+        this.livro.edicao,
         [Validators.required, Validators.min(1), Validators.max(50)],
       ],
       paginas: [
-        '',
-        [Validators.required],
-        Validators.min(1),
-        Validators.max(10000),
+        this.livro.paginas,
+        [Validators.required, Validators.min(1), Validators.max(10000)],
       ],
-      genero: ['', [Validators.required]],
-      subGenero: ['', [Validators.required]],
-      data_lancamento: ['', [Validators.required]],
-      editora: ['', [Validators.required]],
-      encadernacao: ['', [Validators.required]],
-      imagem: ['', [Validators.required]],
+      genero: [this.livro.genero, [Validators.required]],
+      subGenero: [this.livro.subGenero, [Validators.required]],
+      data_lancamento: [this.livro.data_lancamento, [Validators.required]],
+      editora: [this.livro.editora, [Validators.required]],
+      encadernacao: [this.livro.encadernacao, [Validators.required]],
     });
   }
 
@@ -68,11 +65,21 @@ export class DetalharPage implements OnInit {
   }
 
   ngOnInit() {
+    this.data = new Date().toISOString();
     const nav = this.router.getCurrentNavigation();
     this.livro = nav.extras.state.objeto;
-    this.data = new Date().toISOString();
+    console.log(this.livro);
     this.iniciarForm();
   }
+
+  liberarEdicao() {
+    if (this.openEdit) {
+      this.openEdit = false;
+    } else {
+      this.openEdit = true;
+    }
+  }
+
   editar() {
     this.showLoading('Aguarde', 10000);
     this.livroFS
@@ -111,14 +118,6 @@ export class DetalharPage implements OnInit {
         this.presentAlert('Livraria', 'Excluir', 'livro não encontrado!');
         console.log(error);
       });
-  }
-
-  liberarEdicao() {
-    if (this.openEdit) {
-      this.openEdit = false;
-    } else {
-      this.openEdit = true;
-    }
   }
 
   async presentAlert(header: string, subHeader: string, message: string) {
