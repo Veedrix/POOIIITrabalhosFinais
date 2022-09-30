@@ -33,9 +33,9 @@ export class CadastrarPage implements OnInit {
       ],
       paginas: [
         '',
-        [Validators.required],
+        [Validators.required,
         Validators.min(1),
-        Validators.max(10000),
+        Validators.max(10000)],
       ],
       genero: ['', [Validators.required]],
       subGenero: ['', [Validators.required]],

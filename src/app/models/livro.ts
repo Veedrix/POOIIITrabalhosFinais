@@ -22,8 +22,6 @@ export class Livro {
     editora: string,
     encadernacao: string
   ) {
-    let chave = new Date();
-    this._id = chave.getTime();
     this._nome = nome;
     this._autor = autor;
     this._edicao = edicao;
