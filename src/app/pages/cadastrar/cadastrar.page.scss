@@ -2,46 +2,37 @@ span {
   color: red;
 }
 
-.nomeLivro {
-  text-align: center;
+ion-datetime {
+  color: rgb(22, 10, 39);
 }
-
-.autorLivro {
-  text-align: center;
+.info {
+  display: flex;
+  align-items: center;
 }
-
-.edicaoLivro {
-  text-align: center;
+.info2 {
+  padding-left: 5px;
 }
-
-.paginasLivro {
-  text-align: center;
+ion-header {
+  --ion-background-color: #c0a8e7;
 }
-
-.editoraLivro {
-  text-align: center;
+ion-list {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
-
-.generoLivro {
-  text-align: left;
+ion-title {
+  font-size: 25px;
 }
-
-.subgGeneroLivro {
-  text-align: left;
+ion-card-title {
+  font-size: 23px;
 }
-
-.tituloEncadernacao {
-  text-align: left;
+ion-card {
+  margin-bottom: 5px;
+  margin-top: 10px;
+  --color: #6414af;
+  box-shadow: rgb(0 0 0 / 12%) 0px 2px 4px;
 }
-
-.encadernacaoLivro {
-  text-align: left;
-}
-
-.tituloData {
-  text-align: left;
-}
-
-.dataLivro {
-  text-align: center;
+.conteudo {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
 }

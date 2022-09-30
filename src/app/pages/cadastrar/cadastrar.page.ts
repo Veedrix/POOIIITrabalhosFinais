@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
-import { LivroServices } from 'src/app/services/Livro.service';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { livrosFirebaseService } from 'src/app/services/livro-firebase.service';
 
 @Component({
   selector: 'app-cadastrar',
@@ -13,26 +13,41 @@ export class CadastrarPage implements OnInit {
   data: string;
   form_cadastrar: FormGroup;
   isSubmitted: boolean = false;
+  imagem: any;
 
   constructor(
     private alertController: AlertController,
     private router: Router,
-    private livroService: LivroServices,
-    private formBuider: FormBuilder
-  ) { }
+    private livroFS: livrosFirebaseService,
+    private formBuider: FormBuilder,
+    private loadingCtrl: LoadingController
+  ) {}
 
   iniciarForm() {
     this.form_cadastrar = this.formBuider.group({
-      nome: ["", [Validators.required]],
-      autor: ["", [Validators.required]],
-      edicao: ["", [Validators.required]],
-      paginas: ["", [Validators.required]],
-      genero: ["", [Validators.required]],
-      subGenero: ["", [Validators.required]],
-      data_lancamento: ["", [Validators.required]],
-      editora: ["", [Validators.required]],
-      encadernacao: ["", [Validators.required]],
+      nome: ['', [Validators.required]],
+      autor: ['', [Validators.required]],
+      edicao: [
+        '',
+        [Validators.required, Validators.min(1), Validators.max(50)],
+      ],
+      paginas: [
+        '',
+        [Validators.required],
+        Validators.min(1),
+        Validators.max(10000),
+      ],
+      genero: ['', [Validators.required]],
+      subGenero: ['', [Validators.required]],
+      data_lancamento: ['', [Validators.required]],
+      editora: ['', [Validators.required]],
+      encadernacao: ['', [Validators.required]],
+      imagem: ['', [Validators.required]],
     });
+  }
+
+  uploadFile(imagem: any) {
+    this.imagem = imagem.files;
   }
 
   get errorControl() {
@@ -42,7 +57,11 @@ export class CadastrarPage implements OnInit {
   submitForm(): boolean {
     this.isSubmitted = true;
     if (!this.form_cadastrar.valid) {
-      this.presentAlert('Livraria', 'Error', 'Todos os campos são Obrigatórios!');
+      this.presentAlert(
+        'Livraria',
+        'Error',
+        'Todos os campos são Obrigatórios!'
+      );
       return false;
     } else {
       this.cadastrar();
@@ -55,10 +74,27 @@ export class CadastrarPage implements OnInit {
   }
 
   private cadastrar() {
-    this.form_cadastrar.value.nome
-    this.livroService.inserir(this.form_cadastrar.value);
-    this.presentAlert('Livraria', 'Sucesso', 'Livro Cadastrado com sucesso!');
-    this.router.navigate(['/home']);
+    this.showLoading('Aguarde', 10000);
+    this.livroFS
+      .enviarImage(this.imagem, this.form_cadastrar.value)
+      .then(() => {
+        this.loadingCtrl.dismiss();
+        this.presentAlert(
+          'Livraria',
+          'Sucesso',
+          'Livro Cadastrado com sucesso!'
+        );
+        this.router.navigate(['/home']);
+      })
+      .catch((error) =>{
+        this.loadingCtrl.dismiss();
+        this.presentAlert(
+          'Livraria',
+          'Error',
+          'Todos os campos são Obrigatórios!'
+        );
+        console.log(error);
+      });
   }
 
   async presentAlert(header: string, subHeader: string, message: string) {
@@ -70,5 +106,13 @@ export class CadastrarPage implements OnInit {
     });
 
     await alert.present();
+  }
+  async showLoading(mensagem: string, duracao: number) {
+    const loading = await this.loadingCtrl.create({
+      message: mensagem,
+      duration: duracao,
+    });
+
+    loading.present();
   }
 }

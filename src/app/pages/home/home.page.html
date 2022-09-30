@@ -1,30 +1,57 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Livraria</ion-title>
+<ion-header style="background-color: #c0a8e7; padding-top: 10px">
+  <ion-toolbar style="background-color: #c0a8e7">
+    <ion-title style="background-color: #c0a8e7; color: white"
+      >Livraria</ion-title
+    >
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-text-center flex ion-align-self-center">
-  <ion-text color="tertiary">
-    <h2>Lista de Livros</h2>
-  </ion-text>
-  <ion-list>
-    <ion-item-sliding *ngFor="let livro of livros">
-      <ion-item class="nomeLivro">
-        <ion-text>
-          <h3>{{livro.nome}}</h3>
-        </ion-text>
-      </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option (click)="irParaDetalhar(livro)" color="tertiary">
-          <ion-icon name="create-outline"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+<ion-content>
+  <div
+    class="conteudo"
+    style="
+      background-color: white;
+      border-radius: 50px 50px 0px 0px;
+      padding-top: 10px;
+    "
+  >
+    <ion-text class="ion-text-center">
+      <ion-searchbar
+        showCancelButton="always"
+        [(ngModel)]="searchBook"
+      ></ion-searchbar>
+    </ion-text>
+    <ion-list style="background-color: white; border-radius: 50px 50px 0px 0px">
+      <ion-item-sliding *ngFor="let livro of livros | filter: searchBook">
+        <ion-card style="background-color: white">
+          <ion-item>
+            <ion-avatar>
+              <img src="{{livro.downloadURL}}" />
+            </ion-avatar>
+            <ion-label>{{livro.nome}}</ion-label>
+          </ion-item>
+          <ion-card-content (click)="Detalhar(livro)">
+            <div class="info">
+              <ion-icon name="library-outline" style="zoom: 1.9"></ion-icon>
+              <div class="info2">
+                <ion-card-title>
+                  <h1>{{livro.nome}}</h1>
+                </ion-card-title>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+        <ion-item-options side="end">
+          <ion-item-option (click)="Detalhar(livro)" color="tertiary">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="tertiary" (click)="irParaCadastrar()">
+    <ion-fab-button (click)="irParaCadastrar()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

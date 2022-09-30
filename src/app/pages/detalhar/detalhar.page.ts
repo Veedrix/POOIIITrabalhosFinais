@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { Livro } from 'src/app/models/Livro';
+import { livrosFirebaseService } from 'src/app/services/livro-firebase.service';
 import { LivroServices } from 'src/app/services/Livro.service';
 
 @Component({
@@ -20,21 +21,31 @@ export class DetalharPage implements OnInit {
   constructor(
     private alertController: AlertController,
     private router: Router,
-    private livroService: LivroServices,
+    private livroFS: livrosFirebaseService,
+    private loadingCtrl: LoadingController,
     private formBuider: FormBuilder
   ) {}
 
   iniciarForm() {
     this.form_cadastrar = this.formBuider.group({
-      nome: [this.livro.nome, [Validators.required]],
-      autor: [this.livro.autor, [Validators.required]],
-      edicao: [this.livro.edicao, [Validators.required]],
-      paginas: [this.livro.paginas, [Validators.required]],
-      genero: [this.livro.genero, [Validators.required]],
-      subGenero: [this.livro.subGenero, [Validators.required]],
-      data_lancamento: [this.livro.data_lancamento, [Validators.required]],
-      editora: [this.livro.editora, [Validators.required]],
-      encadernacao: [this.livro.encadernacao, [Validators.required]],
+      nome: ['', [Validators.required]],
+      autor: ['', [Validators.required]],
+      edicao: [
+        '',
+        [Validators.required, Validators.min(1), Validators.max(50)],
+      ],
+      paginas: [
+        '',
+        [Validators.required],
+        Validators.min(1),
+        Validators.max(10000),
+      ],
+      genero: ['', [Validators.required]],
+      subGenero: ['', [Validators.required]],
+      data_lancamento: ['', [Validators.required]],
+      editora: ['', [Validators.required]],
+      encadernacao: ['', [Validators.required]],
+      imagem: ['', [Validators.required]],
     });
   }
 
@@ -63,33 +74,19 @@ export class DetalharPage implements OnInit {
     this.iniciarForm();
   }
   editar() {
-    if (!this.form_cadastrar.valid) {
-      this.presentAlert(
-        'Livraria',
-        'Error',
-        'Todos os campos são Obrigatórios!'
-      );
-    } else {
-      if (
-        this.livroService.editar(
-          this.livro,
-          this.form_cadastrar.value.nome,
-          this.form_cadastrar.value.autor,
-          this.form_cadastrar.value.edicao,
-          this.form_cadastrar.value.paginas,
-          this.form_cadastrar.value.data_lancamento,
-          this.form_cadastrar.value.genero,
-          this.form_cadastrar.value.subGenero,
-          this.form_cadastrar.value.editora,
-          this.form_cadastrar.value.encadernacao
-        )
-      ) {
-        this.router.navigate(['/home']);
+    this.showLoading('Aguarde', 10000);
+    this.livroFS
+      .editarLivro(this.form_cadastrar.value, this.livro.id)
+      .then(() => {
+        this.loadingCtrl.dismiss();
         this.presentAlert('Livraria', 'Sucesso', 'Livro Editado com sucesso!');
-      } else {
+        this.router.navigate(['/home']);
+      })
+      .catch((error) => {
+        this.loadingCtrl.dismiss();
         this.presentAlert('Livraria', 'Error', 'livro não encontrado!');
-      }
-    }
+        console.log(error);
+      });
   }
 
   excluir() {
@@ -101,16 +98,19 @@ export class DetalharPage implements OnInit {
   }
 
   private excluirlivro() {
-    if (this.livroService.excluir(this.livro)) {
-      this.presentAlert(
-        'Livraria',
-        'Excluir',
-        'Exclusão realizada com Sucesso!'
-      );
-      this.router.navigate(['/home']);
-    } else {
-      this.presentAlert('Livraria', 'Excluir', 'livro não encontrado!');
-    }
+    this.showLoading('Aguarde', 10000);
+    this.livroFS
+      .excluirlivros(this.livro)
+      .then(() => {
+        this.loadingCtrl.dismiss();
+        this.presentAlert('Livraria', 'Sucesso', 'Livro Excluido com sucesso!');
+        this.router.navigate(['/home']);
+      })
+      .catch((error) => {
+        this.loadingCtrl.dismiss();
+        this.presentAlert('Livraria', 'Excluir', 'livro não encontrado!');
+        console.log(error);
+      });
   }
 
   liberarEdicao() {
@@ -158,5 +158,13 @@ export class DetalharPage implements OnInit {
     });
 
     await alert.present();
+  }
+  async showLoading(mensagem: string, duracao: number) {
+    const loading = await this.loadingCtrl.create({
+      message: mensagem,
+      duration: duracao,
+    });
+
+    loading.present();
   }
 }

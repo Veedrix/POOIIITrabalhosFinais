@@ -8,8 +8,6 @@ export class LivroServices {
     private _livros: Livro[] = [];
 
     constructor() {
-        let livro = new Livro('O Hobbit', 'J.R.R. Tolkien', 1, 336, '2019-07-15', 'magia','aventura', 'HarperCollins', 'capaDura');
-        this.inserir(livro);
     }
 
     public get Livros(): Livro[] {
