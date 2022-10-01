@@ -32,6 +32,7 @@ export class livrosFirebaseService {
       data_lancamento: livros.data_lancamento,
       genero: livros.genero,
       subGenero: livros.subGenero,
+      encadernacao: livros.encadernacao,
       downloadURL: livros.downloadURL,
     });
   }
@@ -46,6 +47,7 @@ export class livrosFirebaseService {
       data_lancamento: livros.data_lancamento,
       genero: livros.genero,
       subGenero: livros.subGenero,
+      encadernacao: livros.encadernacao,
     });
   }
 

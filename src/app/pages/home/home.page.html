@@ -1,8 +1,9 @@
-<ion-header style="background-color: #c0a8e7; padding-top: 10px">
-  <ion-toolbar style="background-color: #c0a8e7">
-    <ion-title style="background-color: #c0a8e7; color: white"
-      >Livraria</ion-title
-    >
+<ion-header style="background-color: #c0a8e7; padding-top: 10px" >
+  <ion-toolbar>
+    <ion-title style="background-color: #c0a8e7; color: white">
+      <ion-icon name="library-outline" style="zoom: 1.5"></ion-icon>
+      Livraria
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,33 +17,19 @@
     "
   >
     <ion-text class="ion-text-center">
-      <ion-searchbar
-        showCancelButton="always"
-        [(ngModel)]="searchBook"
-      ></ion-searchbar>
     </ion-text>
     <ion-list style="background-color: white; border-radius: 50px 50px 0px 0px">
-      <ion-item-sliding *ngFor="let livro of livros | filter: searchBook">
+      <ion-item-sliding *ngFor="let livro of livros">
         <ion-card style="background-color: white">
           <ion-item>
-            <ion-avatar>
+            <ion-avatar style="zoom:1.2">
               <img src="{{livro.downloadURL}}" />
             </ion-avatar>
-            <ion-label>{{livro.nome}}</ion-label>
+            <ion-label class="ion-padding-start">{{livro.nome}}</ion-label>
           </ion-item>
-          <ion-card-content (click)="Detalhar(livro)">
-            <div class="info">
-              <ion-icon name="library-outline" style="zoom: 1.9"></ion-icon>
-              <div class="info2">
-                <ion-card-title>
-                  <h1>{{livro.nome}}</h1>
-                </ion-card-title>
-              </div>
-            </div>
-          </ion-card-content>
         </ion-card>
         <ion-item-options side="end">
-          <ion-item-option (click)="Detalhar(livro)" color="tertiary">
+          <ion-item-option (click)="irParaDetalhar(livro)">
             <ion-icon name="create-outline"></ion-icon>
           </ion-item-option>
         </ion-item-options>

@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Livro } from 'src/app/models/Livro';
 import { livrosFirebaseService } from 'src/app/services/livro-firebase.service';
-import { LivroServices } from 'src/app/services/Livro.service';
 
 @Component({
   selector: 'app-detalhar',
@@ -68,7 +67,7 @@ export class DetalharPage implements OnInit {
     this.data = new Date().toISOString();
     const nav = this.router.getCurrentNavigation();
     this.livro = nav.extras.state.objeto;
-    console.log(this.livro);
+    console.log(this.livro.encadernacao);
     this.iniciarForm();
   }
 

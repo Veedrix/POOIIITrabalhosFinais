@@ -1,21 +1,12 @@
-<ion-header
-  style="
-    background-color: #c0a8e7;
-    padding-top: 20px;
-    border-radius: 0px 0px 50px 50px;
-  "
->
-  <ion-toolbar style="background-color: #c0a8e7">
-    <ion-title
-      style="
-        background-color: #c0a8e7;
-        color: white;
-        border-radius: 0px 0px 50px 50px;
-      "
-      >Livraria</ion-title
-    >
+<ion-header style="background-color: #c0a8e7; padding-top: 10px" >
+  <ion-toolbar>
+    <ion-title style="background-color: #c0a8e7; color: white">
+      <ion-icon name="library-outline" style="zoom: 1.5"></ion-icon>
+      Livraria
+    </ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content class="ion-text-center ion-padding-top">
   <div class="conteudo" style="padding-top: 5px">
     <ion-text
@@ -220,8 +211,8 @@
             </ng-template>
           </ion-modal>
         </ion-item>
-        <ion-item>
-          <ion-button size="default" expand="block" color="success" shape="round">
+        <ion-item class="botao">
+          <ion-button class="envio" expand="block" shape="round" color="tertiary" >
             <input
               type="file"
               formControlName="imagem"
