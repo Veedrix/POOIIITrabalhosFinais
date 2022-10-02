@@ -48,6 +48,7 @@ export class livrosFirebaseService {
       genero: livros.genero,
       subGenero: livros.subGenero,
       encadernacao: livros.encadernacao,
+      downloadURL: livros.downloadURL,
     });
   }
 
@@ -80,9 +81,8 @@ export class livrosFirebaseService {
   }
 
   //Alterações teste imagem
-  excluirImagemFire(downloadURL: any){
-    return this.angularFireStorage
-    .storage.refFromURL(downloadURL).delete();
+  excluirImagemFire(downloadURL: any) {
+    return this.angularFireStorage.storage.refFromURL(downloadURL).delete();
   }
 
   editarImagem(imagem: any, livros: Livro, id: string) {
@@ -108,5 +108,4 @@ export class livrosFirebaseService {
       .subscribe();
     return task;
   }
-
 }

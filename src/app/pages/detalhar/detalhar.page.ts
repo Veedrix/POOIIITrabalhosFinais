@@ -44,7 +44,7 @@ export class DetalharPage implements OnInit {
       editora: [this.livro.editora, [Validators.required]],
       encadernacao: [this.livro.encadernacao, [Validators.required]],
       //Alteração teste imagem
-      imagem: [this.livro.downloadURL, [Validators.required]], 
+      imagem: [this.livro.downloadURL, [Validators.required]],
     });
   }
 
@@ -173,14 +173,11 @@ export class DetalharPage implements OnInit {
   }
 
   //Teste imagem
-  uploadFile(imagem: any){
+  uploadFile(imagem: any) {
     this.imagem = imagem.files;
   }
 
-  downloadFile(){
+  downloadFile() {
     return this.livro.downloadURL;
   }
-
 }
-
-

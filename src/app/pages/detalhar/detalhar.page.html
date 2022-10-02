@@ -244,13 +244,20 @@
         </ion-item>
 
         <!--Teste image-->
-        <ion-item>
-          <ion-button 
-            disabled="{{openEdit}}" size="default" color="sucess" shape="round">
-            <input type="file"  (change)="uploadFile($event.target)"/>
+        <ion-item class="botao">
+          <ion-button
+            class="envio"
+            disabled="{{openEdit}}"
+            expand="block"
+            shape="round"
+            color="tertiary"
+          >
+            <input
+              type="file"
+              (change)="uploadFile($event.target)"
+            />
           </ion-button>
         </ion-item>
-
         <ion-button
           disabled="{{openEdit}}"
           expand="block"
