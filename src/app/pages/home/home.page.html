@@ -1,28 +1,22 @@
-<ion-header style="background-color: #c0a8e7; padding-top: 10px" >
+<ion-header class="header cor" >
   <ion-toolbar>
-    <ion-title style="background-color: #c0a8e7; color: white">
-      <ion-icon name="library-outline" style="zoom: 1.5"></ion-icon>
+    <ion-title class="title cor">
+      <ion-icon name="library-outline" class="icon"></ion-icon>
       Livraria
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div
-    class="conteudo"
-    style="
-      background-color: white;
-      border-radius: 15px 15px 0px 0px;
-      padding-top: 10px;
-    "
-  >
-    <ion-text class="ion-text-center">
-    </ion-text>
-    <ion-list style="background-color: white; border-radius: 50px 50px 0px 0px">
+<ion-content class="ion-text-center ion-padding-top">
+  <div class="conteudo border">
+    <ion-list class="list corBranco border">
+      <ion-text color="tertiary" class="corBranco ion-padding-top">
+        <h2>Biblioteca</h2>
+      </ion-text>
       <ion-item-sliding *ngFor="let livro of livros">
-        <ion-card style="background-color: white">
+        <ion-card class="corBranco">
           <ion-item>
-            <ion-avatar style="zoom:1.2">
+            <ion-avatar class="icon">
               <img src="{{livro.downloadURL}}" />
             </ion-avatar>
             <ion-label class="ion-padding-start">{{livro.nome}}</ion-label>

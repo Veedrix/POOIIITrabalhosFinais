@@ -1,23 +1,20 @@
-<ion-header style="background-color: #c0a8e7; padding-top: 10px" >
+<ion-header class="header cor">
   <ion-toolbar>
-    <ion-title style="background-color: #c0a8e7; color: white">
-      <ion-icon name="library-outline" style="zoom: 1.5"></ion-icon>
+    <ion-title class="title cor">
+      <ion-icon name="library-outline" class="icon"></ion-icon>
       Livraria
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-text-center ion-padding-top">
-  <div class="conteudo" style="padding-top: 5px">
-    <ion-text
-      color="tertiary"
-      style="background-color: white; padding-top: 5px"
-    >
-      <h2>Cadastrar Livro</h2>
-    </ion-text>
-    <ion-list>
+  <div class="conteudo border">
+    <ion-list class="list border">
+      <ion-text color="tertiary" class="ion-padding-top">
+        <h2>Cadastrar Livro</h2>
+      </ion-text>
       <form [formGroup]="form_cadastrar" (ngSubmit)="submitForm()">
-        Nome
+        <ion-text class="ion-text-center">Nome</ion-text>
         <ion-item class="ion-text-center">
           <ion-input
             placeholder="Nome do livro"
@@ -33,7 +30,7 @@
           </span>
         </ion-item>
 
-        Autor
+        <ion-text class="ion-text-center">Autor</ion-text>
         <ion-item class="ion-text-center">
           <ion-input placeholder="Autor" formControlName="autor"></ion-input>
         </ion-item>
@@ -46,7 +43,7 @@
           </span>
         </ion-item>
 
-        Edição Número
+        <ion-text class="ion-text-center">Edição Número</ion-text>
         <ion-item class="ion-text-center">
           <ion-input
             placeholder="Edicão"
@@ -69,7 +66,7 @@
           </span>
         </ion-item>
 
-        Número de Páginas
+        <ion-text class="ion-text-center">Número de Páginas</ion-text>
         <ion-item class="ion-text-center">
           <ion-input
             placeholder="Número de páginas"
@@ -109,7 +106,7 @@
         </ion-item>
 
         <ion-item>
-          <ion-text class="tituloEncadernacao">Gênero: </ion-text>
+          <ion-text class="ion-text-center">Gênero: </ion-text>
           <ion-list>
             <ion-item class="ion-text-center">
               <ion-select
@@ -118,13 +115,13 @@
               >
                 <!--Modificado-->
                 <ion-select-option value="ficcao"
-                  >Ficção Científica</ion-select-option
+                  >Ficção Cientifica</ion-select-option
                 >
                 <ion-select-option value="romance">Romance</ion-select-option>
                 <ion-select-option value="acao">Ação</ion-select-option>
                 <ion-select-option value="magia">Magia</ion-select-option>
                 <ion-select-option value="historico"
-                  >Histórico</ion-select-option
+                  >Historico</ion-select-option
                 >
                 <ion-select-option value="infantil">Infantil</ion-select-option>
                 <ion-select-option value="aventura">Aventura</ion-select-option>
@@ -212,7 +209,12 @@
           </ion-modal>
         </ion-item>
         <ion-item class="botao">
-          <ion-button class="envio" expand="block" shape="round" color="tertiary" >
+          <ion-button
+            class="envio"
+            expand="block"
+            shape="round"
+            color="tertiary"
+          >
             <input
               type="file"
               formControlName="imagem"
@@ -220,9 +222,9 @@
             />
           </ion-button>
         </ion-item>
-        <ion-button expand="block" shape="round" color="tertiary" type="submit"
-          >Cadastrar</ion-button
-        >
+        <ion-button expand="block" shape="round" color="tertiary" type="submit">
+          Concluir Cadastro
+        </ion-button>
       </form>
     </ion-list>
   </div>

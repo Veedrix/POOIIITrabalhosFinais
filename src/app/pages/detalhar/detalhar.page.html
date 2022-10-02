@@ -1,21 +1,18 @@
-<ion-header style="background-color: #c0a8e7; padding-top: 10px" >
+<ion-header class="header cor" >
   <ion-toolbar>
-    <ion-title style="background-color: #c0a8e7; color: white">
-      <ion-icon name="library-outline" style="zoom: 1.5"></ion-icon>
+    <ion-title class="title cor">
+      <ion-icon name="library-outline" class="icon"></ion-icon>
       Livraria
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-text-center ion-padding-top">
-  <div class="conteudo" style="padding-top: 5px">
-    <ion-text
-      color="tertiary"
-      style="background-color: white; padding-top: 5px"
-    >
+  <div class="conteudo border">
+    <ion-list class="list corBranco border">
+    <ion-text color="tertiary" class="corBranco ion-padding-top">
       <h1>Detalhar Livro</h1>
     </ion-text>
-    <ion-list>
       <ion-item>
         <ion-label>Habilitar Edição</ion-label>
         <ion-toggle color="success" (ionChange)="liberarEdicao()"></ion-toggle>
@@ -249,10 +246,10 @@
           disabled="{{openEdit}}"
           expand="block"
           shape="round"
-          color="success"
+          color="tertiary"
           (click)="editar()"
         >
-          Salvar</ion-button
+          Salvar Edição</ion-button
         >
         <ion-button
           disabled="{{openEdit}}"
@@ -261,7 +258,7 @@
           (click)="excluir()"
           color="danger"
         >
-          Excluir</ion-button
+          Excluir Livro</ion-button
         >
       </form>
     </ion-list>
