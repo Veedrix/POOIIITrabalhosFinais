@@ -16,6 +16,7 @@ export class DetalharPage implements OnInit {
   data: string;
   form_cadastrar: FormGroup;
   isSubmitted: boolean = false;
+  imagem: any; //Alteração teste image
 
   constructor(
     private alertController: AlertController,
@@ -42,6 +43,7 @@ export class DetalharPage implements OnInit {
       data_lancamento: [this.livro.data_lancamento, [Validators.required]],
       editora: [this.livro.editora, [Validators.required]],
       encadernacao: [this.livro.encadernacao, [Validators.required]],
+      imagem: [this.livro.downloadURL, [Validators.required]], //Alteração teste imagem
     });
   }
 

@@ -242,6 +242,15 @@
         <ion-item class="avatar">
           <img src="{{livro.downloadURL}}" />
         </ion-item>
+
+        <!--Teste image-->
+        <ion-item>
+          <ion-button disabled="{{edicao}}" size="default" color="sucess" shape="round">
+            <input type="file" (change)="uploadFile($event.target)"/>
+          </ion-button>
+        </ion-item>
+        <!--Fim teste-->
+
         <ion-button
           disabled="{{openEdit}}"
           expand="block"
