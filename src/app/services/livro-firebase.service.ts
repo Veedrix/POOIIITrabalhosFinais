@@ -54,6 +54,7 @@ export class livrosFirebaseService {
   excluirlivros(livros: Livro) {
     return this.angularFirestore.collection(this.PATH).doc(livros.id).delete();
   }
+
   enviarImage(imagem: any, livros: Livro) {
     const file = imagem.item(0);
     if (file.type.split('/')[0] !== 'image') {
@@ -77,4 +78,35 @@ export class livrosFirebaseService {
       .subscribe();
     return task;
   }
+
+  //Alterações teste imagem
+  excluirImagemFire(downloadURL: any){
+    return this.angularFireStorage
+    .storage.refFromURL(downloadURL).delete();
+  }
+
+  editarImagem(imagem: any, livros: Livro, id: string) {
+    const file = imagem.item(0);
+    if (file.type.split('/')[0] !== 'image') {
+      console.error('Tipo não suportado!');
+      return;
+    }
+    const path = `images/${new Date().getTime()}_${file.name}`;
+    const fileRef = this.angularFireStorage.ref(path);
+    let task = this.angularFireStorage.upload(path, file);
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          let uploadedFileURL = fileRef.getDownloadURL();
+          uploadedFileURL.subscribe((res) => {
+            livros.downloadURL = res;
+            this.editarLivro(livros, id);
+          });
+        })
+      )
+      .subscribe();
+    return task;
+  }
+
 }

@@ -245,11 +245,11 @@
 
         <!--Teste image-->
         <ion-item>
-          <ion-button disabled="{{edicao}}" size="default" color="sucess" shape="round">
-            <input type="file" (change)="uploadFile($event.target)"/>
+          <ion-button 
+            disabled="{{openEdit}}" size="default" color="sucess" shape="round">
+            <input type="file"  (change)="uploadFile($event.target)"/>
           </ion-button>
         </ion-item>
-        <!--Fim teste-->
 
         <ion-button
           disabled="{{openEdit}}"

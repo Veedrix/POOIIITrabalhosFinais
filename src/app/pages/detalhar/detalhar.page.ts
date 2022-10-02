@@ -43,7 +43,8 @@ export class DetalharPage implements OnInit {
       data_lancamento: [this.livro.data_lancamento, [Validators.required]],
       editora: [this.livro.editora, [Validators.required]],
       encadernacao: [this.livro.encadernacao, [Validators.required]],
-      imagem: [this.livro.downloadURL, [Validators.required]], //Alteração teste imagem
+      //Alteração teste imagem
+      imagem: [this.livro.downloadURL, [Validators.required]], 
     });
   }
 
@@ -56,7 +57,7 @@ export class DetalharPage implements OnInit {
     if (!this.form_cadastrar.valid) {
       this.presentAlert(
         'Livraria',
-        'Error',
+        'Erro',
         'Todos os campos são Obrigatórios!'
       );
       return false;
@@ -84,8 +85,11 @@ export class DetalharPage implements OnInit {
   editar() {
     this.showLoading('Aguarde', 10000);
     this.livroFS
-      .editarLivro(this.form_cadastrar.value, this.livro.id)
+      //.editarLivro(this.form_cadastrar.value, this.livro.id) //original
+      //Teste imagem
+      .editarImagem(this.imagem, this.form_cadastrar.value, this.livro.id)
       .then(() => {
+        this.livroFS.excluirImagemFire(this.downloadFile()); //Incluso
         this.loadingCtrl.dismiss();
         this.presentAlert('Livraria', 'Sucesso', 'Livro Editado com sucesso!');
         this.router.navigate(['/home']);
@@ -167,4 +171,16 @@ export class DetalharPage implements OnInit {
 
     loading.present();
   }
+
+  //Teste imagem
+  uploadFile(imagem: any){
+    this.imagem = imagem.files;
+  }
+
+  downloadFile(){
+    return this.livro.downloadURL;
+  }
+
 }
+
+
